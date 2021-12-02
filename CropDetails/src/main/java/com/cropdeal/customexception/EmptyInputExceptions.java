@@ -1,9 +1,9 @@
-package com.cropdeal.customException;
+package com.cropdeal.customexception;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ServerExceptions extends RuntimeException{
+public class EmptyInputExceptions extends RuntimeException{
 
 	/**
 	 * 
@@ -11,7 +11,7 @@ public class ServerExceptions extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 	private String ErrorCode;
 	private String ErrorMessage;
-	public ServerExceptions(String errorCode, String errorMessage) {
+	public EmptyInputExceptions(String errorCode, String errorMessage) {
 		super();
 		ErrorCode = errorCode;
 		ErrorMessage = errorMessage;
@@ -31,7 +31,7 @@ public class ServerExceptions extends RuntimeException{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public ServerExceptions() {
+	public EmptyInputExceptions() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -13,4 +13,5 @@ public interface CropService {
 	public Optional<CropDetails> getCropDetailsById( int id);
 	public String deleteCropDetails( int id);
 	public String updateCropDetails( CropDetails cropdetails,  int id);
+	//public Optional<CropDetails> getCropDetailsByName(String name);
 }

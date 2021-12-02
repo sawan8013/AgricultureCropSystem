@@ -24,6 +24,16 @@ public class CropDetails {
 	private Location location; 
 	private String uploadedBy;
 	
+	public String getUploadedBy() {
+		return uploadedBy;
+	}
+
+
+	public void setUploadedBy(String uploadedBy) {
+		this.uploadedBy = uploadedBy;
+	}
+
+
 	public String getCropType() {
 		return cropType;
 	}

@@ -17,58 +17,53 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cropdeal.customException.ControllerException;
-import com.cropdeal.customException.ServerExceptions;
+import com.cropdeal.customexception.CropDetailsNotFoundException;
+import com.cropdeal.customexception.EmptyInputExceptions;
 import com.cropdeal.model.CropDetails;
 import com.cropdeal.service.CropService;
 
 
 @RestController
-@RequestMapping("/cropdetails")
+@RequestMapping("/api/cropdetails")
 public class CropDetailsController {
 
 	@Autowired
-	CropService cropServiceImpl ;
+	CropService cropService ;
 	
+
 	//save the cropdetails
-	@PostMapping("/savecropdetails")
-	public ResponseEntity<?> addCropDetails(@RequestBody CropDetails cropdetails){
-		try {
-			CropDetails cropDetails = cropServiceImpl.save(cropdetails);
-			return  new ResponseEntity<CropDetails>(cropDetails,null, HttpStatus.SC_CREATED);
-		}catch (ServerExceptions e) {
-			ControllerException ce=  new ControllerException(e.getErrorCode(),e.getErrorMessage()); 
-			return new ResponseEntity<ControllerException>(ce , null, HttpStatus.SC_BAD_REQUEST);
-		}catch (Exception e) {
-			ControllerException ce=  new ControllerException("612","something went wrong in Controller"); 
-			return new ResponseEntity<ControllerException>(ce , null, HttpStatus.SC_BAD_REQUEST);		}
-	}
-	
-	//find all cropdetails
-	@GetMapping("/findAllcropdetails")
-	public List<CropDetails> getAll(){
-		return cropServiceImpl.getAll();
-	}
-	
-	//find the cropdetails by id
-	@GetMapping("/findAllCropDetails/{id}")
-	public Optional<CropDetails> getCropDetails(@PathVariable int id){
-		return cropServiceImpl.getCropDetailsById(id);
-	}
-	
-	//delete the cropdetails by id
-	@DeleteMapping("/delete/{id}")
-	public String deleteCropDetails(@PathVariable int id) {
-		cropServiceImpl.deleteCropDetails(id);
-		 return "Delete cropdetails with id: "+id;
-	}
-	
-	//update the cropdetails by id
-	@PutMapping("/update/{id}")
-	public String updateCropDetails(@RequestBody CropDetails cropdetails, @PathVariable int id) {
-		cropServiceImpl.getCropDetailsById(id);
-		cropServiceImpl.save(cropdetails);
-		return "Update cropdetails with id: "+id;
+		@PostMapping("/savecropdetails")
+		public CropDetails save(@RequestBody CropDetails cropdetails) {
+			return  cropService.save(cropdetails);
+		}
 		
-	}
+		//find all cropdetails
+		@GetMapping("/findAllcropdetails")
+		public List<CropDetails> getAll(){
+			return cropService.getAll();
+		}
+		
+		//find the cropdetails by id
+		@GetMapping("/findAllCropDetails/{id}")
+		public Optional<CropDetails> getCropDetails(@PathVariable int id){
+			return cropService.getCropDetailsById(id);
+		}
+		
+		//delete the cropdetails by id
+		@DeleteMapping("/delete/{id}")
+		public String deleteCropDetails(@PathVariable int id) {
+			cropService.deleteCropDetails(id);
+			 return "Delete cropDetails with id: "+id;
+		}
+		
+		//update the cropdetails by id
+		@PutMapping("/update/{id}")
+		public String updateCropDetails(@RequestBody CropDetails cropdetails, @PathVariable int id) {
+			//cropService.getCropDetailsById(id);
+			//cropService.save(cropdetails);
+			cropService.updateCropDetails(cropdetails, id);
+			return "Update cropdetails with id: "+id;
+			
+		}
+
 }

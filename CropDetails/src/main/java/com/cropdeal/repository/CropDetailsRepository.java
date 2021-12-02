@@ -7,5 +7,5 @@ import com.cropdeal.model.CropDetails;
 
 @Repository
 public interface CropDetailsRepository extends MongoRepository<CropDetails, Integer>{
-
+	
 }

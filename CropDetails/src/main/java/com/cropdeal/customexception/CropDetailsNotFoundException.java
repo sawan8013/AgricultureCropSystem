@@ -1,16 +1,16 @@
-package com.cropdeal.customException;
+package com.cropdeal.customexception;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ControllerException extends RuntimeException{
+public class CropDetailsNotFoundException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 
 	private String ErrorCode;
 	private String ErrorMessage;
 	
-	public ControllerException(String errorCode, String errorMessage) {
+	public CropDetailsNotFoundException(String errorCode, String errorMessage) {
 		super();
 		ErrorCode = errorCode;
 		ErrorMessage = errorMessage;
@@ -30,10 +30,11 @@ public class ControllerException extends RuntimeException{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public ControllerException() {}
+	public CropDetailsNotFoundException() {}
 	
 	@Override
 	public String toString() {
 		return "AddDetailsExceptions [ErrorCode=" + ErrorCode + ", ErrorMessage=" + ErrorMessage + "]";
 	}
+	
 }
