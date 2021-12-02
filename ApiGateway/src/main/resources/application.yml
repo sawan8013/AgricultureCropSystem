@@ -1,0 +1,28 @@
+server:
+  port: 9200
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        #Route Mapping
+      - id: cropDetails              #RouteIdentifier
+        uri: http://localhost:8087/         #Respective microservice URL which needs to be mapped
+         #Request Context Path Mapping
+        predicates:
+        - Path=/cropdetails/**          
+
+        #Route Mapping - With out Filter
+      - id: movieinfo
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/info/**
+
+        #Route Mapping - With out Filters 
+      - id: ratingsdata
+        uri: http://localhost:8083/
+        predicates:
+        - Path=/ratingdata/**
+ 
+  application:
+    name: Eureka-with-api-gateway
