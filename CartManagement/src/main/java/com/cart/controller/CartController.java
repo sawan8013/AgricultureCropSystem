@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cart.model.Cart;
+import com.cart.service.CartService;
 import com.cart.service.CartServiceImp;
 
 @RestController
@@ -21,38 +22,37 @@ import com.cart.service.CartServiceImp;
 public class CartController {
  
     @Autowired
-    CartServiceImp cartServiceImp;
+    CartService cartService;
     
   //save the Cart
   	@PostMapping("/saveCartdetails")
   	public Cart save(@RequestBody Cart cart) {
-  		return  cartServiceImp.save(cart);
+  		return  cartService.save(cart);
   	}
   	
   	//find all Cart
   	@GetMapping("/findAllCartdetails")
   	public List<Cart> getAll(){
-  		return cartServiceImp.getAllCarts();
+  		return cartService.getAllCarts();
   	}
   	
   	//find the Cart by id
   	@GetMapping("/findAllCartDetails/{id}")
   	public Optional<Cart> getCartDetails(@PathVariable int id){
-  		return cartServiceImp.getCartById(id);
+  		return cartService.getCartById(id);
   	}
   	
   	//delete the Cart by id
   	@DeleteMapping("/delete/{id}")
   	public String deleteCartDetails(@PathVariable int id) {
-  		cartServiceImp.deleteCartDetails(id);
+  		cartService.deleteCartDetails(id);
   		 return "Delete Cart with id: "+id;
   	}
   	
   	//update the Cart by id
   	@PutMapping("/update/{id}")
   	public String updateCartDetails(@RequestBody Cart cart, @PathVariable int id) {
-  		cartServiceImp.getCartById(id);
-  		cartServiceImp.save(cart);
+  		cartService.updateCartDetails(cart, id);
   		return "Update Cart with id: "+id;
   	}
   	

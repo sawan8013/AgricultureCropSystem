@@ -1,56 +1,49 @@
 package com.cart.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection ="cart")
 public class Cart {
-	@Id
-	private int CartId;
-	private double totalPrice;
-	
-	
-	
-	public int getCartId() {
-		return CartId;
-	}
 
+    @Id
+    private int cartId;
+    private double totalPrice;
 
-
-	public void setCartId(int cartId) {
-		this.CartId = cartId;
-	}
-
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-
-	public Cart(int cartId, double totalPrice) {
-		super();
-		this.CartId = cartId;
-		this.totalPrice = totalPrice;
-	}
-
-
-
-
-
-	@Override
-	public String toString() {
-		return "Cart [CartId=" + CartId + ", totalPrice=" + totalPrice + "]";
-	}
-
-
-
-	public Cart() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    private List<Item> items= new ArrayList<>();
+    public int getCartId() {
+        return cartId;
+    }
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+    public List<Item> getItems() {
+        return items;
+    }
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+    public Cart(int cartId, double totalPrice, List<Item> items) {
+        super();
+        this.cartId = cartId;
+        this.totalPrice = totalPrice;
+        this.items = items;
+    }
+    public Cart() {
+        super();
+    }
+    @Override
+    public String toString() {
+        return "Cart [cartId=" + cartId + ", totalPrice=" + totalPrice + ", items=" + items + "]";
+    }
 	
 }

@@ -65,5 +65,11 @@ public class CropDetailsController {
 			return "Update cropdetails with id: "+id;
 			
 		}
+		
+		//find the cropdetails by name
+	    @GetMapping("/findAllCrops/{cropName}")
+	    public Optional<CropDetails> getCropDetailsByName(@PathVariable String cropName){
+	        return cropService.getCropDetailsByName(cropName);
+	    }
 
 }

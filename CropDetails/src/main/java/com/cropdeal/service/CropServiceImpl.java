@@ -77,13 +77,18 @@ public class CropServiceImpl implements CropService{
 		}	
 	}
 	
-//	//find the cropdetails by name
-//		@Override
-//		public Optional<CropDetails> getCropDetailsByName(String name){
-//			return cropDetailsRepository.
-//
-//		}
+	//find the cropdetails by name
+	 @Override
+	 public Optional<CropDetails>getCropDetailsByName(String cropName){
+			return cropDetailsRepository.findByCropName( cropName);
+    }
 	
+	 
+	 @Override
+     public boolean isCropDetailsExist(int id) {
+         // TODO Auto-generated method stub
+         return false;
+     }
 	  
 	 
 	
