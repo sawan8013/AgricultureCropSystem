@@ -55,8 +55,8 @@ public class CartServiceImp implements CartService {
 	//update the Cart by id
 	@Override
 	public String updateCartDetails( Cart cart,  int id) {
-		boolean isCropExist = cartRepository.existsById(id);
-		if(isCropExist) {
+		boolean isCartExist = cartRepository.existsById(id);
+		if(isCartExist) {
 			cartRepository.save(cart);
 			return "Update Cartdetails with id: "+id;
 		}else {
@@ -66,13 +66,13 @@ public class CartServiceImp implements CartService {
 		
 	}
 	
-	//delete by id
+	//delete cart by id
 	@Override 
 	public String deleteCartDetails( int id) {
-		boolean isCropExist = cartRepository.existsById(id);
-		if(isCropExist) {
+		boolean isCartExist = cartRepository.existsById(id);
+		if(isCartExist) {
 			cartRepository.deleteById(id);
-			 return "Delete Cartdetails with id: "+id;
+			 return "Delete Cart details with id: "+id;
 		}else {
 			throw new ItemException("604","Can not delete as cart not found with this ID");
 		}

@@ -19,8 +19,5 @@ public class MyControllerAdvice {
 	}
 	
 	
-//	@ExceptionHandler(CropDetailsNotFoundException.class)
-//	public ResponseEntity<String> handelNoSuchElement(CropDetailsNotFoundException cropDetailsNotFoundException){
-//		return new ResponseEntity<String>(cropDetailsNotFoundException.getErrorMessage(), null, HttpStatus.SC_BAD_REQUEST);
-//	}
+
 }
