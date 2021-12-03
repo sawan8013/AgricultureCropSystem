@@ -14,12 +14,12 @@ public class MyControllerAdvice {
 	
 	@ExceptionHandler(EmptyInputExceptions.class)
 	public ResponseEntity<String> handelEmptyInput(EmptyInputExceptions emptyInputExceptions){
-		return new ResponseEntity<String>("Input Filed is Empty", null, HttpStatus.SC_BAD_REQUEST);
+		return new ResponseEntity<String>(emptyInputExceptions.getErrorMessage(), null, HttpStatus.SC_BAD_REQUEST);
 	}
 	
 	
 	@ExceptionHandler(CropDetailsNotFoundException.class)
 	public ResponseEntity<String> handelNoSuchElement(CropDetailsNotFoundException cropDetailsNotFoundException){
-		return new ResponseEntity<String>("No Data is Present in DB", null, HttpStatus.SC_BAD_REQUEST);
+		return new ResponseEntity<String>(cropDetailsNotFoundException.getErrorMessage(), null, HttpStatus.SC_BAD_REQUEST);
 	}
 }

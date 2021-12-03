@@ -18,7 +18,7 @@ import com.cart.service.CartService;
 import com.cart.service.CartServiceImp;
 
 @RestController
-@RequestMapping("/cart")
+@RequestMapping("/api/cart")
 public class CartController {
  
     @Autowired
@@ -31,7 +31,7 @@ public class CartController {
   	}
   	
   	//find all Cart
-  	@GetMapping("/findAllCartdetails")
+  	@GetMapping("/findAllCartDetails")
   	public List<Cart> getAll(){
   		return cartService.getAllCarts();
   	}

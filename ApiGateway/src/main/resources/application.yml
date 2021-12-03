@@ -10,13 +10,13 @@ spring:
         uri: http://localhost:8087/         #Respective microservice URL which needs to be mapped
          #Request Context Path Mapping
         predicates:
-        - Path=/cropdetails/**          
+        - Path=/api/cropdetails/**          
 
         #Route Mapping - With out Filter
-      - id: movieinfo
-        uri: http://localhost:8082/
+      - id: CartManagement
+        uri: http://localhost:8088/
         predicates:
-        - Path=/info/**
+        - Path=/api/cart/**
 
         #Route Mapping - With out Filters 
       - id: ratingsdata

@@ -23,6 +23,9 @@ public class CropServiceImpl implements CropService{
 		if(cropdetails.getCropName().isBlank() || cropdetails.getCropName().length()== 0) {
 			throw new EmptyInputExceptions("601","Input Fileds are empty");
 		}
+		else if (cropdetails.getPrice()<=0 ) {
+			throw new EmptyInputExceptions("602","Price is always more than Zero");
+		}
 		CropDetails e =  cropDetailsRepository.save(cropdetails);
 		return e;
 	}
@@ -32,7 +35,7 @@ public class CropServiceImpl implements CropService{
 	public List<CropDetails> getAll(){
 		List<CropDetails> cropList = cropDetailsRepository.findAll();
 		if(cropList.isEmpty()) {
-			throw new EmptyInputExceptions("602","Crop List is completely empty");
+			throw new EmptyInputExceptions("603","Crop List is completely empty");
 		}
 		else {
 			return cropList;
@@ -45,7 +48,7 @@ public class CropServiceImpl implements CropService{
 	public Optional<CropDetails> getCropDetailsById(int id){
 		Optional<CropDetails> findById= cropDetailsRepository.findById(id);
 		if(findById.isEmpty()) {
-			throw new CropDetailsNotFoundException("603","Data is not found in DB");
+			throw new CropDetailsNotFoundException("604","User not found with this ID !");
 		}else {
 			return cropDetailsRepository.findById(id);
 		}
@@ -60,7 +63,7 @@ public class CropServiceImpl implements CropService{
 			cropDetailsRepository.deleteById(id);
 			return "Delete cropdetails with id: "+id;
 		}else {
-			throw new CropDetailsNotFoundException("603","Data is not found in DB");
+			throw new CropDetailsNotFoundException("605","Can not delete as User not found with this ID");
 		}		
 	}
 
@@ -73,7 +76,7 @@ public class CropServiceImpl implements CropService{
 			cropDetailsRepository.save(cropdetails);
 			return "Update cropdetails with id: "+id;
 		}else {
-			throw new CropDetailsNotFoundException("603","Data is not found in DB");
+			throw new CropDetailsNotFoundException("606","Can not update as User not found with this ID");
 		}	
 	}
 	

@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cart.customexception.ItemException;
 import com.cart.model.Cart;
 import com.cart.repository.CartRepository;
+
 
 @Service
 public class CartServiceImp implements CartService {
@@ -18,38 +20,66 @@ public class CartServiceImp implements CartService {
 	//save the cart
 	@Override
 	public Cart save( Cart cart) {
+		if(cart.getItems().isEmpty()) {
+			throw new ItemException("601","You have to provide the Item Details!");
+		}
 		Cart e =  cartRepository.save(cart);
 		return e;
 	}
 	
+	//find all cartDetails
+		@Override
+		public List<Cart> getAllCarts(){
+			List<Cart> cartList = cartRepository.findAll();
+			if(cartList.isEmpty()) {
+				throw new ItemException("603","Cart List is completely empty");
+			}
+			else {
+				return cartRepository.findAll();
+			}
+			
+		}
+		
 	
 	//find the Cart by id
 	@Override
 	public Optional<Cart> getCartById(int id){
-		return cartRepository.findById(id);
+		Optional<Cart> findById= cartRepository.findById(id);
+		if(findById.isEmpty()) {
+			throw new ItemException("602","Cart not found with this ID!");
+		}else {
+			return cartRepository.findById(id);
+		}
 	}
 	
 	//update the Cart by id
 	@Override
 	public String updateCartDetails( Cart cart,  int id) {
-		cartRepository.findById(id);
-		cartRepository.save(cart);
-		return "Update Cartdetails with id: "+id;
+		boolean isCropExist = cartRepository.existsById(id);
+		if(isCropExist) {
+			cartRepository.save(cart);
+			return "Update Cartdetails with id: "+id;
+		}else {
+			throw new ItemException("604","Can not Update as cart not found with this ID");
+		}
+		
 		
 	}
 	
 	//delete by id
 	@Override 
 	public String deleteCartDetails( int id) {
-		cartRepository.deleteById(id);
-		 return "Delete Cartdetails with id: "+id;
+		boolean isCropExist = cartRepository.existsById(id);
+		if(isCropExist) {
+			cartRepository.deleteById(id);
+			 return "Delete Cartdetails with id: "+id;
+		}else {
+			throw new ItemException("604","Can not delete as cart not found with this ID");
+		}
+		
 	}
 	
-	//find all cartDetails
-	@Override
-	public List<Cart> getAllCarts(){
-		return cartRepository.findAll();
-	}
+	
 	
 	/*
 	 * public double getTotalPrice() { return cartRepository.t }
