@@ -31,7 +31,7 @@ public class CropDetailsController {
 	CropService cropService ;
 	
 
-	//save the cropdetails
+		//save the cropdetails
 		@PostMapping("/savecropdetails")
 		public CropDetails save(@RequestBody CropDetails cropdetails) {
 			return  cropService.save(cropdetails);
@@ -67,9 +67,21 @@ public class CropDetailsController {
 		}
 		
 		//find the cropdetails by name
-	    @GetMapping("/findAllCrops/{cropName}")
+	    @GetMapping("/findAllCrops/cropName/{cropName}")
 	    public Optional<CropDetails> getCropDetailsByName(@PathVariable String cropName){
 	        return cropService.getCropDetailsByName(cropName);
 	    }
+	    
+	  //find the cropdetails by Type
+	    @GetMapping("/findAllCrops/cropType/{cropType}")
+	    public Optional<CropDetails> getCropDetailsByType(@PathVariable String cropType){
+	        return cropService.getCropDetailsByType(cropType);
+	    }
+	    
+//	  //find all cropdetails by Type
+//	    @GetMapping("/findAllCrops/cropType/{cropType}")
+//	    public Optional<CropDetails> getAllByType(@PathVariable String cropType){
+//	        return cropService.getCropDetailsByType(cropType);
+//	    }
 
 }

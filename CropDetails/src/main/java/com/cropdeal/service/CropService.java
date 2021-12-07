@@ -15,4 +15,7 @@ public interface CropService {
 	public String updateCropDetails( CropDetails cropdetails,  int id);
 	public Optional<CropDetails>getCropDetailsByName(String cropName);
 	boolean isCropDetailsExist(int id);
+	public Optional<CropDetails>getCropDetailsByType(String cropType);
+	
+	//public List<CropDetails>getAllByType(String cropType);
 }

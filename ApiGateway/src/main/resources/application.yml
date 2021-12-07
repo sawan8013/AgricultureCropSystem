@@ -19,10 +19,10 @@ spring:
         - Path=/api/cart/**
 
         #Route Mapping - With out Filters 
-      - id: ratingsdata
-        uri: http://localhost:8083/
+      - id: OrderManagement
+        uri: http://localhost:8089/
         predicates:
-        - Path=/ratingdata/**
+        - Path=/api/delar/**
  
   application:
     name: Eureka-with-api-gateway

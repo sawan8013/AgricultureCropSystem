@@ -99,5 +99,9 @@ public class Orders {
 	}
 	
 	public Orders() {}
+	public Orders(int i, String string, int j, int k, String string2, String string3, int l, int m, String string4,
+			String string5, String string6, String string7, String string8, int n) {
+		// TODO Auto-generated constructor stub
+	}
 	
 }

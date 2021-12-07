@@ -1,5 +1,6 @@
 package com.cropdeal.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -12,6 +13,16 @@ public interface CropDetailsRepository extends MongoRepository<CropDetails, Inte
 
 	Optional<CropDetails> findByCropName(String cropName);
 
+	Optional<CropDetails> findByCropType(String cropType);
+
+	//List<CropDetails> findAll(String cropType);
+
+	
+
+	
+
+	
+	
 	
 	
 }

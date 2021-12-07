@@ -14,6 +14,7 @@ import com.cropdeal.repository.CropDetailsRepository;
 
 @Service
 public class CropServiceImpl implements CropService{
+	
 	@Autowired
 	private CropDetailsRepository cropDetailsRepository ;
 	
@@ -48,7 +49,7 @@ public class CropServiceImpl implements CropService{
 	public Optional<CropDetails> getCropDetailsById(int id){
 		Optional<CropDetails> findById= cropDetailsRepository.findById(id);
 		if(findById.isEmpty()) {
-			throw new CropDetailsNotFoundException("604","User not found with this ID !");
+			throw new CropDetailsNotFoundException("604","Crop not found with this ID !");
 		}else {
 			return cropDetailsRepository.findById(id);
 		}
@@ -83,8 +84,39 @@ public class CropServiceImpl implements CropService{
 	//find the cropdetails by name
 	 @Override
 	 public Optional<CropDetails>getCropDetailsByName(String cropName){
-			return cropDetailsRepository.findByCropName( cropName);
+		 Optional<CropDetails> Name = cropDetailsRepository.findByCropName(cropName);
+		 if(Name.isEmpty()) {
+				throw new CropDetailsNotFoundException("604","Not Available!");
+			}
+			else {
+				return Name;
+			}
     }
+	
+	//find the cropdetails by type
+	@Override
+	public Optional<CropDetails>getCropDetailsByType(String cropType){
+		Optional<CropDetails> Type = cropDetailsRepository.findByCropType(cropType);
+		if(Type.isEmpty()) {
+			throw new CropDetailsNotFoundException("605","This Type of Crop is Not Available!");
+		}
+		else {
+			return Type;
+		}
+	}
+	
+	
+//	@Override
+//	public List<CropDetails>getAllByType(String cropType){
+//		List<CropDetails> Type = cropDetailsRepository.findAll(cropType);
+//		if(Type.isEmpty()) {
+//			throw new CropDetailsNotFoundException("605","This Type of Crop is Not Available!");
+//		}
+//		else {
+//			return Type;
+//		}
+//	}
+	
 	
 	 
 	 @Override

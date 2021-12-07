@@ -23,9 +23,9 @@ public class OrderServiceImpl implements OrderService{
 			throw new OrderServiceException("601","Crop Details is empty");
 		}else if (order.getAddress().isEmpty()) {
 				throw new OrderServiceException("602","Address list is empty");
-			}
-			Orders orders =  orderRepository.save(order);
-			return orders;		
+		}
+		Orders orders =  orderRepository.save(order);
+		return orders;		
 		}
 
 	//Get All orders
@@ -42,23 +42,23 @@ public class OrderServiceImpl implements OrderService{
 	
 	//Get order by id
 	@Override
-	public Optional<Orders> getOrderById(int customerId) {
-		Optional<Orders> findOrderById= orderRepository.findById(customerId);
+	public Optional<Orders> getOrderById(int delarId) {
+		Optional<Orders> findOrderById= orderRepository.findById(delarId);
 		if(findOrderById.isEmpty()) {
 			throw new OrderServiceException("604","Order not found with this ID !");
 		}else {
-			return orderRepository.findById(customerId) ;
+			return orderRepository.findById(delarId) ;
 		}
 	}
 
 
 	//delete id by id
 	@Override
-	public String deleteOrder(int customerId) {
-		boolean isOrderExist = orderRepository.existsById(customerId);
+	public String deleteOrder(int delarId) {
+		boolean isOrderExist = orderRepository.existsById(delarId);
 		if(isOrderExist) {
-			orderRepository.deleteById(customerId);
-			return "Deleted order with id: "+customerId;
+			orderRepository.deleteById(delarId);
+			return "Deleted order with id: "+delarId;
 		}else {
 			throw new OrderServiceException("605","Can not delete as order not found with this ID");
 		}	
@@ -68,11 +68,11 @@ public class OrderServiceImpl implements OrderService{
 
 	//update data with id
 	@Override
-	public String updateOrder(Orders order, int customerId) {
-		boolean isOrderExist = orderRepository.existsById(customerId);
+	public String updateOrder(Orders order, int delarId) {
+		boolean isOrderExist = orderRepository.existsById(delarId);
 		if(isOrderExist) {
 			orderRepository.save(order);
-			return "Updated Order with id: "+customerId;
+			return "Updated Order with id: "+delarId;
 		}else {
 			throw new OrderServiceException("606","Can not update as Order not found with this ID");
 		}	

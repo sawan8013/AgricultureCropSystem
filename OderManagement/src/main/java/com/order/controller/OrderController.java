@@ -16,7 +16,7 @@ import com.order.model.Orders;
 import com.order.service.OrderService;
 
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/api/delar")
 public class OrderController {
 	
 	@Autowired
@@ -35,29 +35,22 @@ public class OrderController {
 	}
 	
 	//get order by id
-	@GetMapping("/getById/{customerId}")
-	public Optional<Orders> getOrderById(@PathVariable int customerId){
-		return orderservice.getOrderById(customerId);
+	@GetMapping("/getById/{delarId}")
+	public Optional<Orders> getOrderById(@PathVariable int delarId){
+		return orderservice.getOrderById(delarId);
 	}
 
-	
-
-
 	//delete by id
-	@DeleteMapping("/deleteById/{customerId}")
-	public String deleteOrder(@PathVariable int customerId ) {
-		return orderservice.deleteOrder(customerId);
+	@DeleteMapping("/deleteById/{delarId}")
+	public String deleteOrder(@PathVariable int delarId ) {
+		return orderservice.deleteOrder(delarId);
 	}
 	
 	//update Order By Id
-	@PutMapping("/updateOrderById/{customerId}")
-	public String updateOrder(@RequestBody Orders order ,@PathVariable int customerId) {
-		return orderservice.updateOrder(order, customerId);
+	@PutMapping("/updateOrderById/{delarId}")
+	public String updateOrder(@RequestBody Orders order ,@PathVariable int delarId) {
+		return orderservice.updateOrder(order, delarId);
 	}
 	
-	
-
-
-
 	
 }
