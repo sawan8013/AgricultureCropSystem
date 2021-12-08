@@ -16,7 +16,7 @@ import com.order.model.Orders;
 import com.order.service.OrderService;
 
 @RestController
-@RequestMapping("/api/delar")
+@RequestMapping("/api/dealer")
 public class OrderController {
 	
 	@Autowired

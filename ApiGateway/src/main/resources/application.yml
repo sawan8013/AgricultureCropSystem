@@ -22,7 +22,13 @@ spring:
       - id: OrderManagement
         uri: http://localhost:8089/
         predicates:
-        - Path=/api/delar/**
+        - Path=/api/dealer/**
+        
+          #Route Mapping - With out Filters 
+      - id: UserManagement
+        uri: http://localhost:9100/
+        predicates:
+        - Path=/api/profile/**
  
   application:
     name: Eureka-with-api-gateway

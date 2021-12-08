@@ -12,7 +12,7 @@ public class EmptyInputExceptions extends RuntimeException{
 	private String ErrorCode;
 	private String ErrorMessage;
 	public EmptyInputExceptions(String errorCode, String errorMessage) {
-		super();
+		super ();
 		ErrorCode = errorCode;
 		ErrorMessage = errorMessage;
 	}

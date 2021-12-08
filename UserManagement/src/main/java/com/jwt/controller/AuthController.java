@@ -2,6 +2,8 @@ package com.jwt.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,11 +11,16 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jwt.customexception.UserManagementException;
 import com.jwt.model.ERole;
 import com.jwt.model.Role;
 import com.jwt.model.UserModel;
@@ -39,11 +46,13 @@ public class AuthController {
 	@Autowired
 	private JwtUtils jwtUtils;
 	
+	// dashboard
 	@GetMapping("/dashboard")
 	private String welcomeToDashboard() {
 		return "Welcome to the Dashboard";
 	}
 	
+	//for signup
 	@PostMapping("/signup")
 	private ResponseEntity<?> registerUser(@RequestBody SignUpRequest signUpRequest){
 		if (userManagementRepo.existsByUserName(signUpRequest.getUserName())) {
@@ -66,13 +75,6 @@ public class AuthController {
 		userModel.setPass(signUpRequest.getPass());
 		userModel.setRole(signUpRequest.getRoles());
 		
-//		Collection<String> strRoles= signUpRequest.getRoles();
-//		Collection<Role> roles= new ArrayList<>();
-//		
-//		if(strRoles==null) {
-//			Role userRoles= RoleRepository.findByName(ERole.Farmer)
-//		}
-		
 		try {
 			userManagementRepo.save(userModel);
 		}catch (Exception e) {
@@ -82,6 +84,7 @@ public class AuthController {
 		return ResponseEntity.ok(new AuthenticationResponse("User registered successfully!"));
 	}
 	
+	//for login
 	@PostMapping("/login")
 	private ResponseEntity<?> authenticateUser(@RequestBody AuthenticationRequest authenticationRequest){
 		
@@ -96,4 +99,46 @@ public class AuthController {
 		String generatedToken = jwtUtils.generateToken(loadedUser);
 		return ResponseEntity.ok(new AuthenticationResponse(generatedToken));
 	}
+	
+	//find users by email
+	@GetMapping("/profile/ByEmail/{email}")
+	public ResponseEntity<?>getByEmail(@PathVariable String email){
+		Optional<UserModel> Email = userManagementRepo.findByEmail(email);
+		if(Email.isEmpty()) {
+			return ResponseEntity.ok(new AuthenticationResponse("Profile is not found!"));
+			
+		}
+		return ResponseEntity.ok(Email);
+	}
+	
+	
+	//find all users
+	@GetMapping("/findAllUsers")
+	public ResponseEntity<?> getAll(){
+		List<UserModel> users= userManagementRepo.findAll();
+		if(users.isEmpty())
+		{
+			return ResponseEntity.ok(new AuthenticationResponse("No users are available"));
+		}
+		return ResponseEntity.ok(users);
+	}
+	
+	
+//	//delete the UserProfile by email
+//	@DeleteMapping("/delete/{email}")
+//	public String deleteByEmail(@PathVariable String email) {
+////		userManagementRepo.deleteUserProfile(email);
+////		return "Delete cropDetails with id: "+email;
+//		return userManagementRepo.deleteByEmail(email);
+//	}
+//			
+//	//update the userProfile by email
+//	@PutMapping("/update/{email}")
+//	public String updateByEmail(@RequestBody UserModel userModel, @PathVariable String email) {
+////		userManagementRepo.updateProfileDetails(userModel, email);
+////		return "Update cropdetails with id: "+email;
+//		
+//		return userManagementRepo.updateByEmail(userModel, email);
+//	}
+	
 }

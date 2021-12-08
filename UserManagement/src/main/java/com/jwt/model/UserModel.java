@@ -20,7 +20,7 @@ public class UserModel{
 	private String mobileNumber;
 	private String pass;
 	private String role;
-	@ManyToMany(fetch = FetchType.EAGER)
+	
 	//private Collection<Role> roles= new ArrayList<>();
 
 	@Override

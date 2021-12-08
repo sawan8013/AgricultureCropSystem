@@ -106,18 +106,6 @@ public class CropServiceImpl implements CropService{
 	}
 	
 	
-//	@Override
-//	public List<CropDetails>getAllByType(String cropType){
-//		List<CropDetails> Type = cropDetailsRepository.findAll(cropType);
-//		if(Type.isEmpty()) {
-//			throw new CropDetailsNotFoundException("605","This Type of Crop is Not Available!");
-//		}
-//		else {
-//			return Type;
-//		}
-//	}
-	
-	
 	 
 	 @Override
      public boolean isCropDetailsExist(int id) {

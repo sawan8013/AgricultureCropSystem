@@ -1,5 +1,7 @@
 package com.jwt.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,11 +12,29 @@ public interface UserManagementRepo  extends MongoRepository<UserModel, String>{
 
 	
 
-	UserModel findByUserName(String userName);
+	
 
 	boolean existsByUserName(String userName);
 
 	boolean existsByEmail(String email);
+
+	Optional<UserModel> findByEmail(String email);
+
+	UserModel findByUserName(String userName);
+
+//	String deleteByEmail(String email);
+//
+//	String updateByEmail(UserModel userModel, String email);
+
+	
+
+	
+
+	
+
+	
+
+	//Optional<UserModel> findByUserName1(String userName);
 
 	 
 
