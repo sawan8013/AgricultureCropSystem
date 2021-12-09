@@ -49,7 +49,7 @@ public class PaymentController {
 		parameters.put("CUST_ID", customerId);
 		String checkSum = getCheckSum(parameters);
 		parameters.put("CHECKSUMHASH", checkSum);
-		modelAndView.addAllObjects(parameters);
+		modelAndView.addAllObjects(parameters);			// return both key and value at same time 
 		return modelAndView;
 	}
 	

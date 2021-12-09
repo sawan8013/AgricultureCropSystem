@@ -51,12 +51,12 @@ public class UserManagementService implements UserDetailsService {
 		return userList;
 	}
 	
-//	//delete the UserProfile by email
-//	@DeleteMapping("/delete/{email}")
-//	public String deleteByEmail(@PathVariable String email) {
-//		userManagementRepo.deleteByEmail(email);
-//		return "Profile deleted with id: "+email;
-//	}
+	//delete the UserProfile by email
+	@DeleteMapping("/delete/{email}")
+	public String deleteByEmail(@PathVariable String email) {
+		userManagementRepo.deleteByEmail(email);
+		return "Profile deleted with id: "+email;
+	}
 //			
 //	//update the userProfile by email
 //	@PutMapping("/update/{id}")

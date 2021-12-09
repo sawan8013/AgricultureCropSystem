@@ -20,9 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jwt.customexception.UserManagementException;
-import com.jwt.model.ERole;
-import com.jwt.model.Role;
+
 import com.jwt.model.UserModel;
 import com.jwt.repository.UserManagementRepo;
 import com.jwt.request.AuthenticationRequest;
@@ -103,6 +101,7 @@ public class AuthController {
 	//find users by email
 	@GetMapping("/profile/ByEmail/{email}")
 	public ResponseEntity<?>getByEmail(@PathVariable String email){
+		
 		Optional<UserModel> Email = userManagementRepo.findByEmail(email);
 		if(Email.isEmpty()) {
 			return ResponseEntity.ok(new AuthenticationResponse("Profile is not found!"));
@@ -124,14 +123,13 @@ public class AuthController {
 	}
 	
 	
-//	//delete the UserProfile by email
-//	@DeleteMapping("/delete/{email}")
-//	public String deleteByEmail(@PathVariable String email) {
-////		userManagementRepo.deleteUserProfile(email);
-////		return "Delete cropDetails with id: "+email;
-//		return userManagementRepo.deleteByEmail(email);
-//	}
-//			
+	//delete the UserProfile by email
+	@DeleteMapping("/delete/{email}")
+	public String deleteByEmail(@PathVariable String email) {
+		return  userManagementService.deleteByEmail(email);
+		
+	}
+			
 //	//update the userProfile by email
 //	@PutMapping("/update/{email}")
 //	public String updateByEmail(@RequestBody UserModel userModel, @PathVariable String email) {

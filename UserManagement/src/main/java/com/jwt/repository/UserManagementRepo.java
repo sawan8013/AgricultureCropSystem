@@ -22,7 +22,7 @@ public interface UserManagementRepo  extends MongoRepository<UserModel, String>{
 
 	UserModel findByUserName(String userName);
 
-//	String deleteByEmail(String email);
+	String deleteByEmail(String email);
 //
 //	String updateByEmail(UserModel userModel, String email);
 
