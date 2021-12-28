@@ -1,0 +1,26 @@
+.farmer{
+    background-color:rgb(31, 4, 94);
+    /* height: 100vh; */
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.farmer_logo{
+    width: 150px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+    object-fit: contain;
+}
+
+.header_option{
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    text-decoration: none;
+}
+.headerLine_Two{
+    font-size: 13px;
+    font-weight: 400;
+}

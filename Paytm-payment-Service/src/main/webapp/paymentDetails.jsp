@@ -1,50 +1,73 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Payment Details</title>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	<h2>Add Payment Details</h2>
-	<form action="/pgredirect" method = "post">
-		<table>
-			<tr>
-				<td>Name  </td> <td> <input type="text" name="username" /></td>
-			</tr>
-			<tr>
-				<td>Phone Number </td> <td> <input type= "text" name = "phonenumber" /></td>
-			</tr>
-			<tr>
-				<td>Bank Acc Number</td> <td>  <input type= "text" name = "bankAccNumber" /></td>
-			</tr>
-			<tr>
-				<td>IFSC Code  </td> <td> <input type= "text" name = "ifsc" /></td>
-			</tr>
-			<tr>
-				<td>Payment Method </td> <td> <input type= "text" name = "paymentMethod" /></td>
-			</tr>
-			<tr>
-				<td>Customer Id </td><td> <input type="text" class="form-control" placeholder="Customer ID" value=""
-                                           name="CUST_ID"/></td>
-			</tr>
-			<tr>
-				<td>Industry Id</td><td>  <input type="text" class="form-control" placeholder="INDUSTRY_TYPE_ID" value=""
-                                           name="INDUSTRY_TYPE_ID"/></td>
-			</tr>
-			<tr>
-				<td>Order ID </td><td> <input id="ORDER_ID" tabindex="1" maxlength="20" size="20"
-                                           name="ORDER_ID" autocomplete="off" class="form-control" ></td>
-			</tr>
-			<tr>
-				<td>Amount</td><td> <input type="text" class="form-control" placeholder="Amount" value=""
-                                           name="TXN_AMOUNT"/></td>
-			</tr>
-		
-			<tr><td><input type="submit" class="btnRegister" value= "Next"/></td></tr>
-			
-		</table>
+<form action="/pgredirect" method = "post">
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Welcome to Paytm Payment</h3>
+                        <div class="row register-form">
+                            <div class="col-md-10">
+                            </div>
+                                
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Customer ID" value=""
+                                           name="CUST_ID"/>
+                                           </div>
+                                           <br>
+                                           
+                                      <div class="form-group">      
+                                    <input id="ORDER_ID" class="form-control"  placeholder="ORDER ID"
+                                           name="ORDER_ID"  >
+                                           </div>
+                                           
+                                           
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Enter Your Name" value=""
+                                           name="NAME"/>
+                                            <br>
+                          
+                                           <div class="form-group">
+                                    <input type="Number" class="form-control" placeholder="Enter Your No" value=""
+                                           name="Phone no"/>
+                                            <br>
+                                            
+                                            
+                                            <div class="form-group">
+                                    <input type="Number" class="form-control" placeholder="Enter your bank a/c no" value=""
+                                           name="Account no"/>
+                                            <br>
+                                             <div class="form-group">
+                                    <input type="Number" class="form-control" placeholder="Enter your bank IFSC code" value=""
+                                           name="IFSC code"/>
+                                            <br>
+                               </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Amount" value=""
+                                           name="TXN_AMOUNT"/>
+                                            <br>
+                                </div>
+                                <button type="submit" class="btnRegister" style="align : center">Pay with Paytm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>

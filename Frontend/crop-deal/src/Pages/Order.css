@@ -1,0 +1,42 @@
+.order_heading{
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    /* background-color: white; */
+}
+
+.order_heading h2{
+    margin-right: 5px;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    
+}
+
+.order_heading p{
+    font-weight: 200;
+    margin-left: 10px;
+}
+
+.order_image{
+    width: 100%;
+    z-index: -7;
+    margin-bottom: -200px;
+}
+
+.button1{
+    background: #f0c14b;
+    
+    margin-top: 10px;
+    margin-bottom: 70px;
+    border: 1px solid;
+    border-radius: 2px;
+    width: 20%;
+    height: 30px;
+    border-color: #9c7e31;
+}
+
+.button_div{
+    text-align: center;
+}

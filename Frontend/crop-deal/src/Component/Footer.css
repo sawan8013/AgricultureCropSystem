@@ -1,0 +1,16 @@
+.footer{
+    background-color: rgb(31, 4, 94);
+    padding: 20px;
+    color: white;
+    box-sizing: border-box;
+    position: relative;
+    width:100%;
+    /* position: absolute; */
+    bottom: 0;
+    /* top: 30px; */
+    
+}
+
+.footer > div{
+    text-align: center;
+}

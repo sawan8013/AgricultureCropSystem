@@ -8,6 +8,7 @@ import org.apache.http.impl.bootstrap.HttpServer;
 import org.bouncycastle.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ import com.cropdeal.customexception.EmptyInputExceptions;
 import com.cropdeal.model.CropDetails;
 import com.cropdeal.service.CropService;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/cropdetails")
 public class CropDetailsController {
